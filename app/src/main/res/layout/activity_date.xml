@@ -4,13 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.katiejoy.mediready.MainActivity">
+    tools:context="com.katiejoy.mediready.DateActivity">
 
-    <Button
-        android:id="@+id/goToCalendarButton"
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Go to Calendar"
+        android:text="No events for this day"
+        tools:layout_editor_absoluteX="124dp"
+        tools:layout_editor_absoluteY="220dp" />
+
+    <Button
+        android:id="@+id/goHomeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go Home"
         tools:layout_editor_absoluteX="147dp"
-        tools:layout_editor_absoluteY="230dp" />
+        tools:layout_editor_absoluteY="445dp" />
+
 </android.support.constraint.ConstraintLayout>

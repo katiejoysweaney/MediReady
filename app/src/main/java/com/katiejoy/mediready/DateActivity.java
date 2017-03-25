@@ -6,20 +6,20 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
+public class DateActivity extends AppCompatActivity {
 
-    Button goToCalendarButton;
+    Button goHomeButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_date);
 
-        goToCalendarButton = (Button) findViewById(R.id.goToCalendarButton);
-        goToCalendarButton.setOnClickListener(new View.OnClickListener() {
+        goHomeButton = (Button) findViewById(R.id.goHomeButton);
+        goHomeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, CalendarActivity.class);
+                Intent intent = new Intent(DateActivity.this, MainActivity.class);
 
                 //intent.putExtra();
 
