@@ -40,11 +40,11 @@ public class DateActivity extends AppCompatActivity {
 
             Cursor c = eventsdb.rawQuery("SELECT * FROM events WHERE key=" + key, null);
 
-            if(c.getCount() > 0){
+            //if(c.getCount() > 0){
                 c.moveToFirst();
                 event = c.getString(c.getColumnIndex("title"));
                 eventTextView.setText("" + eventTextView);
-            }
+            //}
 
         } catch (Exception e) {
             Log.i("error", e.toString());
