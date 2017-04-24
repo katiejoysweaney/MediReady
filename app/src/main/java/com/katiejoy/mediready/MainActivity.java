@@ -8,11 +8,13 @@ import android.view.MenuItem;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
+    static DatabaseHelper myDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        myDB = new DatabaseHelper(this);
     }
 
     @Override
@@ -29,4 +31,7 @@ public class MainActivity extends AppCompatActivity {
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
 
+    public DatabaseHelper getMyDB() {
+        return myDB;
+    }
 }

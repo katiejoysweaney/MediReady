@@ -7,6 +7,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="MediReady"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".MainActivity"
             android:label="MediReady">
@@ -17,7 +18,20 @@
             </intent-filter>
         </activity>
         <activity android:name=".DateActivity" />
-        <activity android:name=".DatePickerActivity"></activity>
+        <activity android:name=".DatePickerActivity" />
+        <activity android:name=".AddEventActivity">
+            <intent-filter>
+                <action android:name="com.katiejoy.mediready.AddEventActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".DeleteEventActivity" />
+        <intent-filter>
+            <action android:name="android.intent.action.DeleteEventActivity" />
+
+            <category android:name="android.intent.category.DEFAULT" />
+        </intent-filter>
     </application>
 
 </manifest>

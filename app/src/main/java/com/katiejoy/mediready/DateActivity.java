@@ -1,54 +1,30 @@
 package com.katiejoy.mediready;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import static com.katiejoy.mediready.MainActivity.myDB;
+
 public class DateActivity extends AppCompatActivity {
 
-    SQLiteDatabase eventsdb;
-    String event;
-    TextView eventTextView;
-    Button addEvent;
+    public static TextView dateText;
+    public static TextView dateText2;
+    //private boolean found;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_date);
 
-        Intent intent = getIntent();
-
-        final int month = intent.getIntExtra("month", 0);
-        final int day = intent.getIntExtra("day", 0);
-        final int year = intent.getIntExtra("year", 0);
-
-        final String key = Integer.toString(month) + Integer.toString(day) + Integer.toString(year);
-
-        try {
-            eventsdb = this.openOrCreateDatabase("EVENTSDB", MODE_PRIVATE, null);
-            //eventsdb.delete("events", null, null);
-            eventsdb.execSQL("CREATE TABLE IF NOT EXISTS events (key VARCHAR, month INT, day INT, year INT, title VARCHAR)");
-
-            Cursor c = eventsdb.rawQuery("SELECT * FROM events WHERE key=" + key, null);
-
-            //if(c.getCount() > 0){
-                c.moveToFirst();
-                event = c.getString(c.getColumnIndex("title"));
-                eventTextView.setText("" + eventTextView);
-            //}
-
-        } catch (Exception e) {
-            Log.i("error", e.toString());
-        }
+        //<Object eventDatabase;
+       // Event> eventDatabase;
 
         Button button;
         button = (Button) findViewById(R.id.goHomeButton);
@@ -59,54 +35,91 @@ public class DateActivity extends AppCompatActivity {
             }
         });
 
-        eventTextView = (TextView) findViewById(R.id.eventTextView);
+        Button button2;
+        button2 = (Button) findViewById(R.id.addEventButton);
 
+        Button button3;
+        button3 = (Button) findViewById(R.id.viewEventsButton);
 
-        addEvent = (Button) findViewById(R.id.addEvent);
-        addEvent.setOnClickListener(new View.OnClickListener() {
+        Button button4;
+        button4 = (Button) findViewById(R.id.deleteButton);
+
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
-                final EditText input = new EditText(DateActivity.this);
-                new AlertDialog.Builder(DateActivity.this)
-                    .setTitle("Enter your event:")
-                    .setView(input)
-                    .setPositiveButton("Save", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            event = input.getText().toString();
-                            try{
-                                eventsdb.execSQL("INSERT INTO events (key, month, day, year, title) " +
-                                                 "VALUES ('" + key + "', " + month + ", " + day + ", "
-                                                 + year + ", '" + event + "')");
-                            } catch (Exception e){
-                                e.printStackTrace();
-                                Log.i("error adding event", e.toString());
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent2 = new Intent("com.katiejoy.mediready.AddEventActivity");
+                startActivity(intent2);
+            }
+        });
+
+        //found = false;
+
+        button3.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Cursor data = myDB.getAllData();
+                        if (data.getCount() == 0) {
+                            showMessage("Events:", "No events.");
+                            return;
+                        } else {
+                            StringBuffer buffer = new StringBuffer();
+                            while (data.moveToNext()) {
+                                //if (getDateText() == data.getString(0)) {
+                                    buffer.append(data.getString(1) + " " + data.getInt(2) + ":" + data.getInt(3) + "\n");
+                                    //found = true;
+                                //}
                             }
+                            //output.append(buffer);
+                           // if(found == true) {
+                                showMessage("Events:", buffer.toString());
+                           // }else {
+                            //    showMessage("Events:", "No events today.");
+                           // }
                         }
-                    })
-                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                });
 
-                        }
-                    })
-                    .show();
-
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent3 = new Intent("com.katiejoy.mediready.DeleteEventActivity");
+                startActivity(intent3);
             }
         });
 
 
 
+        Intent intent = getIntent();
 
-        TextView dateText = (TextView)findViewById(R.id.dateText);
-        dateText.setText("Date: "+ (month+1) + "/" + day + "/" + year);
+        int month = intent.getIntExtra("month", 0);
+        int day = intent.getIntExtra("day", 0);
+        int year = intent.getIntExtra("year", 0);
 
+        dateText = (TextView)findViewById(R.id.dateText);
+        dateText.setText("Date Chosen: "+ (month+1) + "/" + day + "/" + year);
+        dateText2 = new TextView(this);
+        dateText2.setText((month+1) + "/" + day + "/" + year);
 
+    }
 
+    public static String getDateText() {
+        return dateText2.getText().toString();
+    }
 
-
-
+    public void showMessage(String title, String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setMessage(message);
+        builder.show();
     }
 }
 
