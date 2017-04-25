@@ -7,7 +7,6 @@
         android:icon="@mipmap/ic_launcher"
         android:label="MediReady"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".MainActivity"
             android:label="MediReady">
@@ -22,16 +21,29 @@
         <activity android:name=".AddEventActivity">
             <intent-filter>
                 <action android:name="com.katiejoy.mediready.AddEventActivity" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity android:name=".DeleteEventActivity" />
+
         <intent-filter>
             <action android:name="android.intent.action.DeleteEventActivity" />
 
             <category android:name="android.intent.category.DEFAULT" />
         </intent-filter>
+
+        <activity android:name=".AddPillActivity">
+        <intent-filter>
+            <action android:name="com.katiejoy.mediready.AddPillActivity" />
+            <category android:name="android.intent.category.DEFAULT" />
+        </intent-filter>
+        </activity>
+        <activity android:name=".AddPeriodActivity">
+            <intent-filter>
+                <action android:name="com.katiejoy.mediready.AddPeriodActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import static com.katiejoy.mediready.MainActivity.myDB;
@@ -26,8 +27,8 @@ public class DateActivity extends AppCompatActivity {
         //<Object eventDatabase;
        // Event> eventDatabase;
 
-        Button button;
-        button = (Button) findViewById(R.id.goHomeButton);
+        ImageButton button;
+        button = (ImageButton) findViewById(R.id.goHomeButton);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -35,14 +36,21 @@ public class DateActivity extends AppCompatActivity {
             }
         });
 
-        Button button2;
-        button2 = (Button) findViewById(R.id.addEventButton);
+        ImageButton button2;
+        button2 = (ImageButton) findViewById(R.id.addEventButton);
 
-        Button button3;
-        button3 = (Button) findViewById(R.id.viewEventsButton);
+        ImageButton button3;
+        button3 = (ImageButton) findViewById(R.id.viewEventsButton);
 
-        Button button4;
-        button4 = (Button) findViewById(R.id.deleteButton);
+        ImageButton button4;
+        button4 = (ImageButton) findViewById(R.id.deleteButton);
+
+        ImageButton button5;
+        button5 = (ImageButton) findViewById(R.id.addPeriodButton);
+
+        ImageButton button6;
+        button6 = (ImageButton) findViewById(R.id.addPillButton);
+
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +66,24 @@ public class DateActivity extends AppCompatActivity {
                 startActivity(intent2);
             }
         });
+
+
+        button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent4 = new Intent("com.katiejoy.mediready.AddEventActivity");
+                startActivity(intent4);
+            }
+        });
+
+        button6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent3 = new Intent("com.katiejoy.mediready.AddEventActivity");
+                startActivity(intent3);
+            }
+        });
+
 
         //found = false;
 
@@ -104,7 +130,7 @@ public class DateActivity extends AppCompatActivity {
         int year = intent.getIntExtra("year", 0);
 
         dateText = (TextView)findViewById(R.id.dateText);
-        dateText.setText("Date Chosen: "+ (month+1) + "/" + day + "/" + year);
+        dateText.setText("DATE: "+ (month+1) + "/" + day + "/" + year);
         dateText2 = new TextView(this);
         dateText2.setText((month+1) + "/" + day + "/" + year);
 
