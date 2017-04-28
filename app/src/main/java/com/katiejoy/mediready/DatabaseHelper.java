@@ -24,7 +24,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(" create table " + TABLE_NAME + " (DATE STRING, TITLE STRING, HOUR INT, MINUTE INT) ");
+        db.execSQL(" create table " + TABLE_NAME + " (DATE STRING, TITLE STRING, HOUR FLOAT, MINUTE FLOAT) ");
     }
 
     @Override
@@ -33,7 +33,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertData(String date, String title, int hour, int minute) {
+    public boolean insertData(String date, String title, float hour, float minute) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_1, date);
@@ -48,9 +48,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+
+
+
     public Cursor getAllData() {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor res = db.rawQuery(" select * from "+ TABLE_NAME, null);
+        //Cursor res = db.rawQuery(" select * from "+ TABLE_NAME + " where DATE= " + DateActivity.getDateText(), null);
+        //Cursor res = db.rawQuery(" select * from "+ TABLE_NAME + " where DATE= " + DateActivity.getDateText() + "", null);
+
         return res;
     }
 

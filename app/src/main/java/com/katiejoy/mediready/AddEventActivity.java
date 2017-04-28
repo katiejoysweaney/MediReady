@@ -33,15 +33,17 @@ public class AddEventActivity extends AppCompatActivity {
         final TimePicker timePicker;
         timePicker = (TimePicker) findViewById(R.id.timePicker);
         timePicker.setIs24HourView(false);
+        //final float hour = timePicker.getHour();
+        //final float minute = timePicker.getMinute();
 
         OKButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean isInserted = MainActivity.myDB.insertData(DateActivity.getDateText(), title.getText().toString(), timePicker.getHour(), timePicker.getMinute());
+                boolean isInserted = MainActivity.myDB.insertData(DateActivity.getDateText(), "Appointment: " + title.getText().toString(), timePicker.getHour(), timePicker.getMinute());
                 if(isInserted == true) {
-                    Toast.makeText(AddEventActivity.this, "Event Added", Toast.LENGTH_LONG).show();
+                    Toast.makeText(AddEventActivity.this, "Appointment Added", Toast.LENGTH_LONG).show();
                 }else {
-                    Toast.makeText(AddEventActivity.this, "Error: Event Not Added", Toast.LENGTH_LONG).show();
+                    Toast.makeText(AddEventActivity.this, "Error: Appointment Not Added", Toast.LENGTH_LONG).show();
                 }
                 finish();
             }

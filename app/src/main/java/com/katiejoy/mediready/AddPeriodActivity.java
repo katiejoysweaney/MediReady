@@ -30,19 +30,20 @@ public class AddPeriodActivity extends AppCompatActivity {
 
         //title = (EditText) findViewById(R.id.titleInput);
 
+        final RatingBar ratingBar1;
+        ratingBar1 = (RatingBar) findViewById(R.id.ratingBar1);
 
-        final TimePicker timePicker;
-        timePicker = (TimePicker) findViewById(R.id.timePicker);
-        timePicker.setIs24HourView(false);
+        final  RatingBar ratingBar2;
+        ratingBar2 = (RatingBar) findViewById(R.id.ratingBar2);
 
         OKButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean isInserted = MainActivity.myDB.insertData(DateActivity.getDateText(), "Period " + DateActivity.getDateText(), timePicker.getHour(), timePicker.getMinute());
+                boolean isInserted = MainActivity.myDB.insertData(DateActivity.getDateText(), "Period: " + DateActivity.getDateText(), ratingBar1.getRating(), ratingBar2.getRating());
                 if(isInserted == true) {
-                    Toast.makeText(AddPeriodActivity.this, "Event Added", Toast.LENGTH_LONG).show();
+                    Toast.makeText(AddPeriodActivity.this, "Cycle Added", Toast.LENGTH_LONG).show();
                 }else {
-                    Toast.makeText(AddPeriodActivity.this, "Error: Event Not Added", Toast.LENGTH_LONG).show();
+                    Toast.makeText(AddPeriodActivity.this, "Error: Cycle Not Added", Toast.LENGTH_LONG).show();
                 }
                 finish();
             }

@@ -71,7 +71,7 @@ public class DateActivity extends AppCompatActivity {
         button5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent4 = new Intent("com.katiejoy.mediready.AddEventActivity");
+                Intent intent4 = new Intent("com.katiejoy.mediready.AddPeriodActivity");
                 startActivity(intent4);
             }
         });
@@ -79,7 +79,7 @@ public class DateActivity extends AppCompatActivity {
         button6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent3 = new Intent("com.katiejoy.mediready.AddEventActivity");
+                Intent intent3 = new Intent("com.katiejoy.mediready.AddPillActivity");
                 startActivity(intent3);
             }
         });

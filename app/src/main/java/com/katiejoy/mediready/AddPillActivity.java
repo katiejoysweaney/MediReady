@@ -33,15 +33,17 @@ public class AddPillActivity extends AppCompatActivity {
         final TimePicker timePicker;
         timePicker = (TimePicker) findViewById(R.id.timePickerPill);
         timePicker.setIs24HourView(false);
+        //final float hour = timePicker.getHour();
+        //final float minute = timePicker.getMinute();
 
         OKButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean isInserted = MainActivity.myDB.insertData(DateActivity.getDateText(), title.getText().toString(), timePicker.getHour(), timePicker.getMinute());
+                boolean isInserted = MainActivity.myDB.insertData(DateActivity.getDateText(), "Medicine: " + title.getText().toString(), timePicker.getHour(), timePicker.getMinute());
                 if(isInserted == true) {
-                    Toast.makeText(AddPillActivity.this, "Event Added", Toast.LENGTH_LONG).show();
+                    Toast.makeText(AddPillActivity.this, "Medicine Added", Toast.LENGTH_LONG).show();
                 }else {
-                    Toast.makeText(AddPillActivity.this, "Error: Event Not Added", Toast.LENGTH_LONG).show();
+                    Toast.makeText(AddPillActivity.this, "Error: Medicine Not Added", Toast.LENGTH_LONG).show();
                 }
                 finish();
             }
