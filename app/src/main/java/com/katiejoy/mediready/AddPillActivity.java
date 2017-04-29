@@ -29,8 +29,6 @@ public class AddPillActivity extends AppCompatActivity {
         final TimePicker timePicker;
         timePicker = (TimePicker) findViewById(R.id.timePickerPill);
         timePicker.setIs24HourView(false);
-        //final float hour = timePicker.getHour();
-        //final float minute = timePicker.getMinute();
 
         OKButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -2,6 +2,7 @@ package com.katiejoy.mediready;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Typeface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,15 +18,16 @@ public class DateActivity extends AppCompatActivity {
 
     public static TextView dateText;
     public static TextView dateText2;
-    //private boolean found;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_date);
 
-        //<Object eventDatabase;
-       // Event> eventDatabase;
+
+        Typeface comfortaaFont = Typeface.createFromAsset(getAssets(), "fonts/Comfortaa-Regular.ttf");
+
+
 
         ImageButton button;
         button = (ImageButton) findViewById(R.id.goHomeButton);
@@ -52,6 +54,7 @@ public class DateActivity extends AppCompatActivity {
         button6 = (ImageButton) findViewById(R.id.addPillButton);
 
 
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,7 +69,6 @@ public class DateActivity extends AppCompatActivity {
                 startActivity(intent2);
             }
         });
-
 
         button5.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,9 +86,6 @@ public class DateActivity extends AppCompatActivity {
             }
         });
 
-
-        //found = false;
-
         button3.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -98,17 +97,9 @@ public class DateActivity extends AppCompatActivity {
                         } else {
                             StringBuffer buffer = new StringBuffer();
                             while (data.moveToNext()) {
-                                //if (getDateText() == data.getString(0)) {
                                     buffer.append(data.getString(1) + " " + data.getInt(2) + ":" + data.getInt(3) + "\n");
-                                    //found = true;
-                                //}
                             }
-                            //output.append(buffer);
-                           // if(found == true) {
                                 showMessage("Events:", buffer.toString());
-                           // }else {
-                            //    showMessage("Events:", "No events today.");
-                           // }
                         }
                     }
                 });
@@ -130,6 +121,7 @@ public class DateActivity extends AppCompatActivity {
         int year = intent.getIntExtra("year", 0);
 
         dateText = (TextView)findViewById(R.id.dateText);
+        dateText.setTypeface(comfortaaFont);
         dateText.setText("DATE: "+ (month+1) + "/" + day + "/" + year);
         dateText2 = new TextView(this);
         dateText2.setText((month+1) + "/" + day + "/" + year);
@@ -147,5 +139,7 @@ public class DateActivity extends AppCompatActivity {
         builder.setMessage(message);
         builder.show();
     }
+
+
 }
 

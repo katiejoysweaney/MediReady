@@ -23,7 +23,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        //db.execSQL(" create table " + TABLE_NAME + " (DATE STRING, TITLE STRING, HOUR FLOAT, MINUTE FLOAT) ");
         db.execSQL(" create table " + TABLE_NAME + " (DATE VARCHAR, TITLE VARCHAR, HOUR FLOAT, MINUTE FLOAT) ");
     }
 
@@ -55,6 +54,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
+
     public Integer deleteData(String title) {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(TABLE_NAME, " TITLE = ? ", new String[] {title});
@@ -68,6 +68,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.rawQuery("DELETE * FROM event_table WHERE TITLE = ?", new String[] {DateActivity.getDateText()});
     }
     */
+
 }
 
 
