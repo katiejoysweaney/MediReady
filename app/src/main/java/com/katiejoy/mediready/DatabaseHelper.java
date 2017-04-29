@@ -19,12 +19,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_4 = "MINUTE";
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
-        //
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(" create table " + TABLE_NAME + " (DATE STRING, TITLE STRING, HOUR FLOAT, MINUTE FLOAT) ");
+        //db.execSQL(" create table " + TABLE_NAME + " (DATE STRING, TITLE STRING, HOUR FLOAT, MINUTE FLOAT) ");
+        db.execSQL(" create table " + TABLE_NAME + " (DATE VARCHAR, TITLE VARCHAR, HOUR FLOAT, MINUTE FLOAT) ");
     }
 
     @Override
@@ -48,22 +48,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-
-
-
     public Cursor getAllData() {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery(" select * from "+ TABLE_NAME, null);
-        //Cursor res = db.rawQuery(" select * from "+ TABLE_NAME + " where DATE= " + DateActivity.getDateText(), null);
-        //Cursor res = db.rawQuery(" select * from "+ TABLE_NAME + " where DATE= " + DateActivity.getDateText() + "", null);
-
+        Cursor res = db.rawQuery("SELECT * FROM event_table WHERE DATE = ?", new String[] {DateActivity.getDateText()});
         return res;
     }
+
 
     public Integer deleteData(String title) {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(TABLE_NAME, " TITLE = ? ", new String[] {title});
     }
+
+
+    /*
+    public void deleteData(String title) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        //return db.delete(TABLE_NAME, " TITLE = ? ", new String[] {title});
+        db.rawQuery("DELETE * FROM event_table WHERE TITLE = ?", new String[] {DateActivity.getDateText()});
+    }
+    */
 }
 
 
